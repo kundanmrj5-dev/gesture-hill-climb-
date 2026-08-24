@@ -1,0 +1,5 @@
+pygame>=2.5.2
+opencv-python>=4.8.0
+# 0.10.x retains the `mp.solutions.hands` API used by main.py.
+# MediaPipe 1.x removed that legacy interface.
+mediapipe==0.10.21

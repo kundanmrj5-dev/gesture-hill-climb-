@@ -1,0 +1,14 @@
+# Python environments and cache
+.venv/
+.venv311/
+__pycache__/
+*.py[cod]
+
+# Local game data
+high_score.json
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
