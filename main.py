@@ -599,7 +599,9 @@ def main() -> None:
     print("Starting Gesture Hill Climb…", flush=True)
     pygame.init()
     pygame.display.set_caption("Gesture Hill Climb")
-    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+    # Keep the game artwork at its intended size while allowing the Windows
+    # maximize button to scale it cleanly for recording or full-screen play.
+    screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE | pygame.SCALED)
     clock = pygame.time.Clock()
     fonts = (pygame.font.SysFont("arial", 18, bold=True), pygame.font.SysFont("arial", 24, bold=True), pygame.font.SysFont("arial", 48, bold=True))
     print("Opening game window…", flush=True)
@@ -628,6 +630,8 @@ def main() -> None:
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         game_state = "menu" if game_state == "playing" else game_state
+                    elif event.key == pygame.K_F11:
+                        pygame.display.toggle_fullscreen()
                     elif event.key == pygame.K_r:
                         if car.crashed:
                             car.restart_at_checkpoint() if car.lives > 0 else car.start_new_run()

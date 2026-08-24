@@ -23,7 +23,7 @@ An original webcam-controlled hill-driving game built with Python, Pygame, OpenC
 
 The webcam preview is mirrored. First hold both hands at a comfortable resting height and press **C**. Then raise the right palm to drive and the left palm to brake. Keeping a hand low, closing it, or taking it out of frame releases that control.
 
-Keyboard fallback: **Right / D** accelerate, **Left / A** brake, **Up / J** jump, **Space** boost, **Esc** returns to the menu. Press **C** to recalibrate.
+Keyboard fallback: **Right / D** accelerate, **Left / A** brake, **Up / J** jump, **Space** boost, **Esc** returns to the menu, and **F11** toggles full-screen mode. Press **C** to recalibrate. The normal game window can also be maximized with the Windows maximize button.
 
 ## Cliff gaps
 
