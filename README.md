@@ -23,11 +23,11 @@ An original webcam-controlled hill-driving game built with Python, Pygame, OpenC
 
 The webcam preview is mirrored. First hold both hands at a comfortable resting height and press **C**. Then raise the right palm to drive and the left palm to brake. Keeping a hand low, closing it, or taking it out of frame releases that control.
 
-Keyboard fallback: **Right / D** accelerate, **Left / A** brake, **Space** boost, **Esc** returns to the menu. Press **C** to recalibrate.
+Keyboard fallback: **Right / D** accelerate, **Left / A** brake, **Up / J** jump, **Space** boost, **Esc** returns to the menu. Press **C** to recalibrate.
 
 ## Cliff gaps
 
-Cliff gaps are the only crash hazard. When the on-screen warning appears, close your right palm while approaching the dark gap. The car jumps automatically; leaving the right palm open drives normally. If you miss a jump and fall into a gap, click **RESTART**, press **R**, or raise both hands to start again.
+Cliff gaps are the only crash hazard. When the on-screen warning appears, make one quick closed-right-palm gesture while approaching the dark gap. The car jumps automatically; holding a fist does not repeat the jump. If you miss a jump and fall into a gap, click **RESTART**, press **R**, or raise both hands to start again.
 
 ## Setup
 

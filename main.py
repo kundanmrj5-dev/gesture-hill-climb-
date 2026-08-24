@@ -127,6 +127,7 @@ class GestureController:
         # A palm must be raised above this resting height to activate its control.
         self.neutral_y = {"Right": 0.62, "Left": 0.62}
         self.last_hands: dict[str, float] = {}
+        self.right_palm_closed = False
         self.error = ""
         self.enabled = False
 
@@ -183,6 +184,7 @@ class GestureController:
 
         frame = cv2.flip(frame, 1)
         result = self.hands.process(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
+        right_hand_seen = False
         if result.multi_hand_landmarks and result.multi_handedness:
             statuses = []
             control.hand_found = True
@@ -197,8 +199,13 @@ class GestureController:
                 # Raising an open palm above its resting position produces 0–100% input.
                 amount = max(0.0, min(1.0, (self.neutral_y[side] - smooth_y - 0.06) / 0.30)) if is_open else 0.0
                 if side == "Right":
+                    right_hand_seen = True
                     control.throttle = amount
-                    control.jump = not is_open
+                    # Trigger only once when the palm closes. Holding a fist must not
+                    # repeatedly start new jumps after the car lands.
+                    palm_closed = not is_open
+                    control.jump = palm_closed and not self.right_palm_closed
+                    self.right_palm_closed = palm_closed
                     action = "DRIVE" if is_open else "JUMP"
                 else:
                     control.brake = amount
@@ -214,6 +221,10 @@ class GestureController:
             control.message = "  |  ".join(statuses) or "Show both open palms"
             if control.restart:
                 control.message = "BOTH HANDS UP: RESTART"
+
+        # Losing the right hand releases the gesture, ready for the next close.
+        if not right_hand_seen:
+            self.right_palm_closed = False
 
         cv2.putText(frame, "Right hand up = DRIVE | Close right palm = JUMP | Left hand up = BRAKE", (14, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (30, 255, 80), 2)
         cv2.putText(frame, control.message, (14, 56), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (30, 255, 80), 2)
@@ -302,7 +313,8 @@ class Car:
         self.distance = max(self.distance, self.x - 180)
 
         self.jump_cooldown = max(0.0, self.jump_cooldown - dt)
-        if controls.jump and not self.jumping and self.jump_cooldown <= 0:
+        jump_started = controls.jump and not self.jumping and self.jump_cooldown <= 0
+        if jump_started:
             self.jumping = True
             self.air_height = 1.0
             self.vertical_speed = 480.0
@@ -320,7 +332,7 @@ class Car:
         self.airborne = self.jumping
         self.angular_velocity = 0.0
         self.notice_timer = max(0.0, self.notice_timer - dt)
-        return "jump" if controls.jump and self.jumping and self.air_height < 15 else None
+        return "jump" if jump_started else None
 
     def collect_pickups(self) -> list[str]:
         events = []
@@ -618,6 +630,7 @@ def main() -> None:
                 controls.throttle = max(controls.throttle, float(keys[pygame.K_RIGHT] or keys[pygame.K_d]))
                 controls.brake = max(controls.brake, float(keys[pygame.K_LEFT] or keys[pygame.K_a]))
                 controls.boost = controls.boost or bool(keys[pygame.K_SPACE])
+                controls.jump = controls.jump or bool(keys[pygame.K_UP] or keys[pygame.K_j])
                 if car.crashed and (keys[pygame.K_r] or controls.restart):
                     car.restart_at_checkpoint()
                     sounds.play("start")
