@@ -27,7 +27,7 @@ Keyboard fallback: **Right / D** accelerate, **Left / A** brake, **Up / J** jump
 
 ## Cliff gaps
 
-Cliff gaps are the only crash hazard. When the on-screen warning appears, close the right hand into a fist and hold it still for a moment (about 3 camera frames). The car jumps once. Then reopen the right palm before attempting the next jump. This confirmation prevents accidental jumps caused by a blurry or briefly lost hand. If you miss a jump and fall into a gap, click **RESTART**, press **R**, or raise both hands to start again.
+Cliff gaps are the only crash hazard. First drive with a raised open right palm. Then, when the on-screen warning appears, close the right hand into a fist and hold it still for a moment (about 5 camera frames). The car jumps once. Then reopen and raise the right palm before attempting the next jump. A fist is ignored until the game has first seen intentional open-palm driving, preventing accidental jumps caused by a blurry or briefly lost hand. If you miss a jump and fall into a gap, click **RESTART**, press **R**, or raise both hands to start again.
 
 ## Setup
 

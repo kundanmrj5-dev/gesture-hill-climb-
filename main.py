@@ -130,7 +130,9 @@ class GestureController:
         # Gesture confirmation makes a jump resistant to a single bad camera frame.
         self.right_open_streak = 0
         self.right_fist_streak = 0
-        self.right_jump_armed = True
+        # A jump cannot happen at startup. The player must first show a raised,
+        # open right palm, which makes accidental webcam detections harmless.
+        self.right_jump_armed = False
         self.error = ""
         self.enabled = False
 
@@ -225,13 +227,14 @@ class GestureController:
                         self.right_open_streak = 0
                         self.right_fist_streak = 0
 
-                    # Require a short, stable gesture: two open-palm frames to drive
-                    # and three fist frames to jump. Reopening the palm arms the next jump.
-                    open_confirmed = self.right_open_streak >= 2
-                    if open_confirmed:
+                    # Require a stable driving palm before arming a jump. A fist must
+                    # then remain detected for five frames before it can jump.
+                    open_confirmed = self.right_open_streak >= 3
+                    driving = open_confirmed and amount >= 0.20
+                    if driving:
                         self.right_jump_armed = True
-                    control.throttle = amount if open_confirmed else 0.0
-                    fist_confirmed = self.right_fist_streak >= 3
+                    control.throttle = amount if driving else 0.0
+                    fist_confirmed = self.right_fist_streak >= 5
                     control.jump = fist_confirmed and self.right_jump_armed
                     if control.jump:
                         self.right_jump_armed = False
@@ -240,7 +243,7 @@ class GestureController:
                         action = "JUMP"
                     elif is_fist:
                         action = "FIST - HOLD"
-                    elif open_confirmed:
+                    elif driving:
                         action = "DRIVE"
                     else:
                         action = "SHOW OPEN PALM"
