@@ -127,7 +127,10 @@ class GestureController:
         # A palm must be raised above this resting height to activate its control.
         self.neutral_y = {"Right": 0.62, "Left": 0.62}
         self.last_hands: dict[str, float] = {}
-        self.right_palm_closed = False
+        # Gesture confirmation makes a jump resistant to a single bad camera frame.
+        self.right_open_streak = 0
+        self.right_fist_streak = 0
+        self.right_jump_armed = True
         self.error = ""
         self.enabled = False
 
@@ -168,6 +171,17 @@ class GestureController:
                 extended += 1
         return extended >= 3
 
+    @staticmethod
+    def _is_fist(landmarks) -> bool:
+        """Return True only when at least three fingers are folded near the palm."""
+        palm = landmarks.landmark[9]
+        folded = 0
+        for tip_index in (8, 12, 16, 20):
+            tip = landmarks.landmark[tip_index]
+            if math.hypot(tip.x - palm.x, tip.y - palm.y) < 0.16:
+                folded += 1
+        return folded >= 3
+
     def recalibrate(self) -> None:
         for side, hand_y in self.last_hands.items():
             self.neutral_y[side] = hand_y
@@ -200,13 +214,36 @@ class GestureController:
                 amount = max(0.0, min(1.0, (self.neutral_y[side] - smooth_y - 0.06) / 0.30)) if is_open else 0.0
                 if side == "Right":
                     right_hand_seen = True
-                    control.throttle = amount
-                    # Trigger only once when the palm closes. Holding a fist must not
-                    # repeatedly start new jumps after the car lands.
-                    palm_closed = not is_open
-                    control.jump = palm_closed and not self.right_palm_closed
-                    self.right_palm_closed = palm_closed
-                    action = "DRIVE" if is_open else "JUMP"
+                    is_fist = self._is_fist(landmarks)
+                    if is_open:
+                        self.right_open_streak += 1
+                        self.right_fist_streak = 0
+                    elif is_fist:
+                        self.right_fist_streak += 1
+                        self.right_open_streak = 0
+                    else:
+                        self.right_open_streak = 0
+                        self.right_fist_streak = 0
+
+                    # Require a short, stable gesture: two open-palm frames to drive
+                    # and three fist frames to jump. Reopening the palm arms the next jump.
+                    open_confirmed = self.right_open_streak >= 2
+                    if open_confirmed:
+                        self.right_jump_armed = True
+                    control.throttle = amount if open_confirmed else 0.0
+                    fist_confirmed = self.right_fist_streak >= 3
+                    control.jump = fist_confirmed and self.right_jump_armed
+                    if control.jump:
+                        self.right_jump_armed = False
+
+                    if control.jump:
+                        action = "JUMP"
+                    elif is_fist:
+                        action = "FIST - HOLD"
+                    elif open_confirmed:
+                        action = "DRIVE"
+                    else:
+                        action = "SHOW OPEN PALM"
                 else:
                     control.brake = amount
                     action = "BRAKE"
@@ -222,9 +259,10 @@ class GestureController:
             if control.restart:
                 control.message = "BOTH HANDS UP: RESTART"
 
-        # Losing the right hand releases the gesture, ready for the next close.
+        # A missing hand never creates a jump. Open the palm again to arm a new one.
         if not right_hand_seen:
-            self.right_palm_closed = False
+            self.right_open_streak = 0
+            self.right_fist_streak = 0
 
         cv2.putText(frame, "Right hand up = DRIVE | Close right palm = JUMP | Left hand up = BRAKE", (14, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (30, 255, 80), 2)
         cv2.putText(frame, control.message, (14, 56), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (30, 255, 80), 2)
