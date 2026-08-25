@@ -4,16 +4,20 @@ An original webcam-controlled hill-driving game built with Python, Pygame, OpenC
 🎥 **[Watch Gameplay Demo](https://github.com/kundanmrj5-dev/gesture-hill-climb-/releases/tag/v1.0.0)**
 
 ![Gesture Hill Climb Gameplay](assets/gameplay.gif)
-## Features
+## ✨ Features
 
-- Two-hand gesture controls with real-time webcam feedback
-- Start menu, car selection, and in-game Exit button
-- Three vehicles with different power and top-speed profiles
-- Coins, fuel pickups, sound effects, and a saved high score
-- Three changing original landscapes: Alpine Pass, Sunset Canyon, and Midnight Valley
-- Marked cliff-gap challenges with a palm-close jump gesture
-- Keyboard fallback and a webcam-free mode for testing
-
+- 🖐️ **Real-Time Hand Gesture Control** — Control the vehicle using live hand gestures detected through the webcam.
+- 🚗 **Multiple Vehicles** — Choose from three vehicles with different power and top-speed characteristics.
+- 🏎️ **Gesture-Based Driving** — Use the right-hand palm to accelerate, right-hand fist to jump, and left-hand palm to brake.
+- 🏔️ **Dynamic Landscapes** — Explore three original environments: Alpine Pass, Sunset Canyon, and Midnight Valley.
+- 🪙 **Coin Collection System** — Collect coins while driving and improve your score.
+- ⛽ **Fuel Management** — Collect fuel pickups to keep the vehicle running.
+- 🚧 **Cliff-Gap Challenges** — Use the jump gesture to overcome gaps and difficult sections of the terrain.
+- 🏆 **High-Score System** — Track and save your best performance.
+- 🔊 **Immersive Game Experience** — Includes sound effects, vehicle movement, obstacles, and interactive environments.
+- 🎮 **Keyboard Fallback** — Play and test the game using keyboard controls when a webcam is unavailable.
+- 📷 **Webcam-Free Testing Mode** — Test core gameplay mechanics without requiring a camera.
+- 🖥️ **Resizable & Fullscreen Window** — Supports flexible game window sizes for a better gameplay experience.
 ## Controls
 
 | Gesture | Effect |
