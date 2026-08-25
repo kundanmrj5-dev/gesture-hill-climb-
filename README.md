@@ -44,10 +44,8 @@ Keyboard fallback: **Right / D** accelerate, **Left / A** brake, **Up / J** jump
 | `Esc` | Exit / Pause |
 
 > 💡 **Tip:** For the best gesture-control experience, keep your hands clearly visible to the webcam and maintain a reasonable distance from the camera.
-## Cliff gaps
 
-Cliff gaps are the only crash hazard. First drive with a raised open right palm. Then, when the on-screen warning appears, close the right hand into a fist and hold it still for a moment (about 5 camera frames). The car jumps once. Then reopen and raise the right palm before attempting the next jump. A fist is ignored until the game has first seen intentional open-palm driving, preventing accidental jumps caused by a blurry or briefly lost hand. If you miss a jump and fall into a gap, click **RESTART**, press **R**, or raise both hands to start again.
-
+- 🚧 **Cliff-Gap Challenges** — Jump across dangerous terrain gaps by closing your right hand into a fist at the right moment.
 ## Setup
 
 Use Python 3.11 (recommended for the included MediaPipe version):
