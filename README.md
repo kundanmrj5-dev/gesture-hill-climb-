@@ -46,6 +46,7 @@ Keyboard fallback: **Right / D** accelerate, **Left / A** brake, **Up / J** jump
 > 💡 **Tip:** For the best gesture-control experience, keep your hands clearly visible to the webcam and maintain a reasonable distance from the camera.
 
 - 🚧 **Cliff-Gap Challenges** — Jump across dangerous terrain gaps by closing your right hand into a fist at the right moment.
+- | ✊ Right Closed Fist | Jump over cliff gaps |
 ## Setup
 
 Use Python 3.11 (recommended for the included MediaPipe version):
