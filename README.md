@@ -53,23 +53,27 @@ Keyboard fallback: **Right / D** accelerate, **Left / A** brake, **Up / J** jump
 
 - 🚧 **Cliff-Gap Challenges** — Jump across dangerous terrain gaps by closing your right hand into a fist at the right moment.
 - | ✊ Right Closed Fist | Jump over cliff gaps |
-## Setup
 
-Use Python 3.11 (recommended for the included MediaPipe version):
+## ⚙️ Setup
+
+### Prerequisites
+
+- Windows 10/11
+- Python 3.11
+- Webcam (required for gesture controls)
+- Git
+
+### 1. Clone the Repository
 
 ```powershell
-git clone <your-repository-url>
-cd gesture-hill-climb
+git clone https://github.com/kundanmrj5-dev/gesture-hill-climb-.git
+cd gesture-hill-climb-
 py -3.11 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe main.py
-```
+.venv\Scripts\activate
+python -m pip install -r requirements.txt
+python main.py
+python main.py --no-camera
 
-The project intentionally pins MediaPipe to version 0.10.21 because it provides the stable Hands API used by the game.
-
-Allow webcam permission when Windows asks. The camera preview opens in a separate **Gesture Camera** window; press **Q** there or use the in-game Exit button to quit.
-
-For a webcam-free test, run `.\.venv\Scripts\python.exe main.py --no-camera`. It starts the game in keyboard-only mode.
 
 ## How the gesture control works
 
