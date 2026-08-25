@@ -68,12 +68,37 @@ Keyboard fallback: **Right / D** accelerate, **Left / A** brake, **Up / J** jump
 ```powershell
 git clone https://github.com/kundanmrj5-dev/gesture-hill-climb-.git
 cd gesture-hill-climb-
-py -3.11 -m venv .venv
-.venv\Scripts\activate
-python -m pip install -r requirements.txt
-python main.py
-python main.py --no-camera
+```
 
+### 2. Create a Virtual Environment
+
+```powershell
+py -3.11 -m venv .venv
+```
+
+### 3. Activate the Virtual Environment
+
+```powershell
+.venv\Scripts\activate
+```
+
+### 4. Install Dependencies
+
+```powershell
+python -m pip install -r requirements.txt
+```
+
+### 5. Run the Game
+
+```powershell
+python main.py
+```
+
+### Webcam-Free Mode
+
+```powershell
+python main.py --no-camera
+```
 
 ## How the gesture control works
 
