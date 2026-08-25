@@ -18,19 +18,32 @@ An original webcam-controlled hill-driving game built with Python, Pygame, OpenC
 - 🎮 **Keyboard Fallback** — Play and test the game using keyboard controls when a webcam is unavailable.
 - 📷 **Webcam-Free Testing Mode** — Test core gameplay mechanics without requiring a camera.
 - 🖥️ **Resizable & Fullscreen Window** — Supports flexible game window sizes for a better gameplay experience.
-## Controls
-
-| Gesture | Effect |
-| --- | --- |
-| Raise your open right hand | Accelerate forward; height controls strength |
-| Raise your open left hand | Brake / reverse; height controls strength |
-| Make a closed right fist briefly | Jump over a cliff gap |
-| Raise both open hands after a crash | Restart the run |
 
 The webcam preview is mirrored. First hold both hands at a comfortable resting height and press **C**. Then raise the right palm to drive and the left palm to brake. Keeping a hand low, closing it, or taking it out of frame releases that control.
 
 Keyboard fallback: **Right / D** accelerate, **Left / A** brake, **Up / J** jump, **Space** boost, **Esc** returns to the menu, and **F11** toggles full-screen mode. Press **C** to recalibrate. The normal game window can also be maximized with the Windows maximize button.
 
+## 🎮 Controls
+
+### 🖐️ Gesture Controls
+
+| Gesture | Action |
+|---|---|
+| ✋ Right Open Palm | Accelerate / Drive |
+| ✊ Right Closed Fist | Jump |
+| ✋ Left Open Palm | Brake |
+| 👋 Both Hands | Gesture-based interaction |
+
+### ⌨️ Keyboard Controls
+
+| Key | Action |
+|---|---|
+| `W` / `↑` | Accelerate |
+| `S` / `↓` | Brake |
+| `Space` | Jump |
+| `Esc` | Exit / Pause |
+
+> 💡 **Tip:** For the best gesture-control experience, keep your hands clearly visible to the webcam and maintain a reasonable distance from the camera.
 ## Cliff gaps
 
 Cliff gaps are the only crash hazard. First drive with a raised open right palm. Then, when the on-screen warning appears, close the right hand into a fist and hold it still for a moment (about 5 camera frames). The car jumps once. Then reopen and raise the right palm before attempting the next jump. A fist is ignored until the game has first seen intentional open-palm driving, preventing accidental jumps caused by a blurry or briefly lost hand. If you miss a jump and fall into a gap, click **RESTART**, press **R**, or raise both hands to start again.
