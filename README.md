@@ -49,8 +49,6 @@ Keyboard fallback: **Right / D** accelerate, **Left / A** brake, **Up / J** jump
 | `Space` | Jump |
 | `Esc` | Exit / Pause |
 
-> 💡 **Tip:** For the best gesture-control experience, keep your hands clearly visible to the webcam and maintain a reasonable distance from the camera.
-
 - 💡 **Tip:** For the best gesture-control experience, keep your hands clearly visible to the webcam and maintain a reasonable distance from the camera.
 
 - 🚧 **Cliff-Gap Challenges** — Jump across dangerous terrain gaps by closing your right hand into a fist at the right moment.
