@@ -70,6 +70,35 @@ For a webcam-free test, run `.\.venv\Scripts\python.exe main.py --no-camera`. It
 MediaPipe Hands finds 21 landmarks for each hand every frame. The program identifies right and left open palms separately, compares their heights with the calibrated resting position, and smooths the output over several frames so brief tracking noise does not change the vehicle controls.
 
 If MediaPipe cannot start or no webcam is found, the game stays playable with the keyboard.
+## 🧠 How It Works
+
+The game uses real-time hand tracking to convert gestures into vehicle controls.
+
+```text
+Webcam
+   ↓
+OpenCV
+   ↓
+MediaPipe Hands
+   ↓
+Hand Landmark Detection
+   ↓
+Gesture Recognition
+   ↓
+Game Controls
+   ↓
+Pygame
+
+## 📂 Project Structure
+
+```text
+gesture-hill-climb-/
+│
+├── assets/              # Game assets and screenshots
+├── main.py              # Main game entry point
+├── requirements.txt     # Python dependencies
+├── README.md            # Project documentation
+└── .gitignore           # Ignored files
 
 ## Project files
 
@@ -77,6 +106,24 @@ If MediaPipe cannot start or no webcam is found, the game stays playable with th
 - `requirements.txt` — Python dependencies
 - `high_score.json` — created locally at runtime and intentionally not committed
 
+## 🚀 Future Improvements
+
+- 🤖 Improve gesture recognition accuracy and reliability
+- 🎮 Add more gesture-based controls
+- 🚗 Add more vehicles with unique abilities
+- 🏔️ Introduce more maps, levels, and terrain challenges
+- 🏆 Add online leaderboard and player statistics
+- ⚡ Optimize real-time hand tracking for better performance
+- 👥 Add multiplayer gameplay
+
 ## License
 
 This project is released under the [MIT License](LICENSE).
+## 👨‍💻 Author
+
+**Kundan Pandey**  
+B.Tech Computer Science & Engineering
+
+Interested in **Data Science, Machine Learning, Computer Vision, and AI**.
+
+- 🐙 GitHub: [kundanmrj5-dev](https://github.com/kundanmrj5-dev)
