@@ -1,7 +1,9 @@
 # Gesture Hill Climb
 
 An original webcam-controlled hill-driving game built with Python, Pygame, OpenCV, and MediaPipe Hands. Drive with two hands, choose a vehicle, collect coins and fuel, and travel through changing landscapes.
+🎥 **[Watch Gameplay Demo](https://github.com/kundanmrj5-dev/gesture-hill-climb-/releases/tag/v1.0.0)**
 
+![Gesture Hill Climb Gameplay](assets/gameplay.gif)
 ## Features
 
 - Two-hand gesture controls with real-time webcam feedback
