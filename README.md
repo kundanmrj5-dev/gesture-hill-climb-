@@ -156,8 +156,4 @@ This project is released under the [MIT License](LICENSE).
 ## 👨‍💻 Author
 
 **Kundan Pandey**  
-B.Tech Computer Science & Engineering
 
-Interested in **Data Science, Machine Learning, Computer Vision, and AI**.
-
-- 🐙 GitHub: [kundanmrj5-dev](https://github.com/kundanmrj5-dev)
